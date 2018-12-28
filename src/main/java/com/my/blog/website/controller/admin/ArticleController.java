@@ -72,6 +72,17 @@ public class ArticleController extends BaseController {
         request.setAttribute("active", "article");
         return "admin/article_edit";
     }
+    
+    @GetMapping(value = "/json/{cid}")
+    public ContentVo getJson(@PathVariable String cid, HttpServletRequest request) {
+        ContentVo contents = contentsService.getContents(cid);
+        request.setAttribute("contents", contents);
+        return contents;
+//        List<MetaVo> categories = metasService.getMetas(Types.CATEGORY.getType());
+//        request.setAttribute("categories", categories);
+//        request.setAttribute("active", "article");
+//        return "admin/article_edit";
+    }
 
     @PostMapping(value = "/publish")
     @ResponseBody
